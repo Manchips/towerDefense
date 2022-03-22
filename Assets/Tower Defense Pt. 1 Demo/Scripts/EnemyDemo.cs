@@ -42,7 +42,7 @@ public class EnemyDemo : MonoBehaviour
                 float l = 3;
                 Debug.DrawLine(hitInfo.point + Vector3.left * l, hitInfo.point + Vector3.right * l, Color.magenta); //We probably don't need this since its a 2d game
                 Debug.DrawLine(hitInfo.point + Vector3.up * l, hitInfo.point + Vector3.down * l, Color.magenta);
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     if (hitInfo.collider.gameObject == gameObject)
                     {
@@ -88,8 +88,13 @@ public class EnemyDemo : MonoBehaviour
         // todo #4 Check if destination reaches or passed and change target
         Vector3 beforeMovement = (wayPointArray[targetWayPointIndex].position - transform.position).normalized;
         Vector3 afterMovement = (beforeMovement - movementDir).normalized;
-        
-        if (Vector3.Dot(beforeMovement,afterMovement) > 0)
+
+        if (targetWayPointIndex == wayPointArray.Length - 1)
+        {
+            Debug.Log("Finished going through the level");
+            Destroy(gameObject);
+        }
+        else if(Vector3.Dot(beforeMovement,afterMovement) > 0)
         {
             transform.position = wayPointArray[targetWayPointIndex].position;
             Debug.Log("On target");
