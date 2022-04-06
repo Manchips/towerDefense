@@ -24,7 +24,7 @@ public class EconomyManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EnemyDemo.addCoins += addCoins;
+        EnemyAgent.addCoins += addCoins;
     }
     
     private void addCoins(int coins)
@@ -35,6 +35,6 @@ public class EconomyManager : MonoBehaviour
 
     private void OnDisable()
     {
-        EnemyDemo.addCoins -= addCoins;
+        EnemyAgent.addCoins -= addCoins;
     }
 }
